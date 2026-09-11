@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Winna Casino Promo — Monthly $2,000 Leaderboard Race</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-dark: #0a0d14;
+      --card-bg: #121824;
+      --card-border: #1f2a3c;
+      --gold: #f59e0b;
+      --gold-glow: rgba(245, 158, 11, 0.35);
+      --accent: #22c55e;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --btn-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(10, 13, 20, 0.85);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--btn-gradient);
+      color: #000;
+      box-shadow: 0 4px 15px var(--gold-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 50px;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      line-height: 1.2;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+      text-shadow: 0 0 25px var(--gold-glow);
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.15rem;
+      margin-bottom: 30px;
+    }
+
+    /* Countdown Timer */
+    .countdown-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .time-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 12px 18px;
+      border-radius: 10px;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .time-box .num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .time-box .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* Prize Distribution Grid */
+    .prizes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 15px;
+      max-width: 900px;
+      margin: 0 auto 50px;
+      padding: 0 20px;
+    }
+
+    .prize-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+
+    .prize-card:hover {
+      border-color: var(--gold);
+    }
+
+    .prize-rank {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .prize-amount {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    /* Leaderboard */
+    .leaderboard-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .live-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .pulse-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.9); opacity: 0.7; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.7; }
+    }
+
+    .leaderboard-table {
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      overflow: hidden;
+      border-collapse: collapse;
+    }
+
+    .leaderboard-table th,
+    .leaderboard-table td {
+      padding: 16px 20px;
+      text-align: left;
+    }
+
+    .leaderboard-table th {
+      background: #171f30;
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .leaderboard-table tr {
+      border-bottom: 1px solid var(--card-border);
+      transition: background-color 0.25s;
+    }
+
+    .leaderboard-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .leaderboard-table tr:hover {
+      background-color: #161e2e;
+    }
+
+    .rank-cell {
+      font-weight: 800;
+      font-size: 1.1rem;
+      width: 60px;
+    }
+
+    .rank-1 { color: #ffd700; }
+    .rank-2 { color: #c0c0c0; }
+    .rank-3 { color: #cd7f32; }
+
+    .wager-amount {
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .prize-badge {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .flashing {
+      animation: highlight 1s ease-out;
+    }
+
+    @keyframes highlight {
+      0% { background-color: rgba(245, 158, 11, 0.25); }
+      100% { background-color: transparent; }
+    }
+
+    .footer-cta {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .terms {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="logo">WINNA <span>RACE</span></div>
+    <a href="https://winna.com/?r=BIGBONUSESSS" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Claim Bonus & Play</a>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="badge">Exclusive Monthly Wager Race</div>
+    <h1>Top 5 Split <span>$2,000</span> Every Month</h1>
+    <p>Wager on any game at Winna Casino using referral code <strong>BIGBONUSESSS</strong>. Climb the ranks to take home your cut of the monthly prize pool!</p>
+
+    <!-- Race Timer -->
+    <div class="countdown-container">
+      <div class="time-box">
+        <div class="num" id="days">00</div>
+        <div class="label">Days</div>
+      </div>
+      <div class="time-box">
+        <div class="num" id="hours">00</div>
+        <div class="label">Hours</div>
+      </div>
+      <div class="time-box">
+        <div class="num" id="minutes">00</div>
+        <div class="label">Mins</div>
+      </div>
+      <div class="time-box">
+        <div class="num" id="seconds">00</div>
+        <div class="label">Secs</div>
+      </div>
+    </div>
+
+    <!-- Prize Breakdown -->
+    <div class="prizes-grid">
+      <div class="prize-card">
+        <div class="prize-rank">🥇 1st Place</div>
+        <div class="prize-amount">$900</div>
+      </div>
+      <div class="prize-card">
+        <div class="prize-rank">🥈 2nd Place</div>
+        <div class="prize-amount">$500</div>
+      </div>
+      <div class="prize-card">
+        <div class="prize-rank">🥉 3rd Place</div>
+        <div class="prize-amount">$300</div>
+      </div>
+      <div class="prize-card">
+        <div class="prize-rank">4th Place</div>
+        <div class="prize-amount">$200</div>
+      </div>
+      <div class="prize-card">
+        <div class="prize-rank">5th Place</div>
+        <div class="prize-amount">$100</div>
+      </div>
+    </div>
+
+    <a href="https://winna.com/?r=BIGBONUSESSS" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size: 1.1rem; padding: 16px 36px;">
+      Join Race with Code BIGBONUSESSS
+    </a>
+  </section>
+
+  <!-- Live Leaderboard -->
+  <section class="leaderboard-section">
+    <div class="section-title">
+      <span>Top 5 Live Wagers</span>
+      <div class="live-indicator">
+        <div class="pulse-dot"></div>
+        Live Calculating
+      </div>
+    </div>
+
+    <table class="leaderboard-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Player</th>
+          <th>Total Wagered</th>
+          <th>Projected Reward</th>
+        </tr>
+      </thead>
+      <tbody id="leaderboard-body">
+        <!-- Injected via JavaScript -->
+      </tbody>
+    </table>
+
+    <div class="footer-cta">
+      <a href="https://winna.com/?r=BIGBONUSESSS" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        Start Wagering on Winna
+      </a>
+      <p class="terms">
+        *Wagers update automatically. Leaderboard snapshots at 23:59:59 UTC on the final day of each calendar month. Prizes are credited in cash or crypto equivalent. 18+ only.
+      </p>
+    </div>
+  </section>
+
+  <!-- Dynamic Live Calculation & Race Scripts -->
+  <script>
+    // 1. Initial State for Top 5 Competitors
+    const prizeTiers = ["$900", "$500", "$300", "$200", "$100"];
+
+    let players = [
+      { name: "CryptoViper", wager: 68420.50 },
+      { name: "LuckyAces99", wager: 52140.25 },
+      { name: "VegasRolls", wager: 41890.00 },
+      { name: "HighStakeSam", wager: 34150.75 },
+      { name: "MoonBet77", wager: 28910.10 }
+    ];
+
+    const tbody = document.getElementById("leaderboard-body");
+
+    // Format currency
+    function formatCurrency(val) {
+      return "$" + val.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    // Render Leaderboard
+    function renderLeaderboard(updatedIdx = null) {
+      // Re-sort in descending order
+      players.sort((a, b) => b.wager - a.wager);
+
+      tbody.innerHTML = "";
+      players.forEach((player, index) => {
+        const tr = document.createElement("tr");
+        if (index === updatedIdx) {
+          tr.classList.add("flashing");
+        }
+
+        const rankClass = index === 0 ? "rank-1" : index === 1 ? "rank-2" : index === 2 ? "rank-3" : "";
+        const rankLabel = index === 0 ? "#1 🏆" : index === 1 ? "#2 🥈" : index === 2 ? "#3 🥉" : `#${index + 1}`;
+
+        tr.innerHTML = `
+          <td class="rank-cell ${rankClass}">${rankLabel}</td>
+          <td><strong>${player.name}</strong></td>
+          <td class="wager-amount">${formatCurrency(player.wager)}</td>
+          <td class="prize-badge">${prizeTiers[index]}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // 2. Simulate Live Real-Time Wager Calculations
+    // Randomly adds realistic betting increments every few seconds
+    function simulateLiveBets() {
+      // Pick a random player from the top 5
+      const randIdx = Math.floor(Math.random() * players.length);
+      // Random bet amount between $25 and $450
+      const addedWager = +(Math.random() * 425 + 25).toFixed(2);
+
+      players[randIdx].wager += addedWager;
+      renderLeaderboard(randIdx);
+
+      // Repeat at randomized intervals between 2.5s and 6s
+      const nextInterval = Math.floor(Math.random() * 3500) + 2500;
+      setTimeout(simulateLiveBets, nextInterval);
+    }
+
+    // 3. Countdown Timer to End of the Current Month
+    function updateCountdown() {
+      const now = new Date();
+      // First day of next month at 00:00:00 UTC
+      const nextMonth = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 1, 0, 0, 0));
+      const diff = nextMonth - now;
+
+      if (diff <= 0) {
+        document.getElementById("days").innerText = "00";
+        document.getElementById("hours").innerText = "00";
+        document.getElementById("minutes").innerText = "00";
+        document.getElementById("seconds").innerText = "00";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = String(days).padStart(2, "0");
+      document.getElementById("hours").innerText = String(hours).padStart(2, "0");
+      document.getElementById("minutes").innerText = String(mins).padStart(2, "0");
+      document.getElementById("seconds").innerText = String(secs).padStart(2, "0");
+    }
+
+    // Initialization
+    renderLeaderboard();
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+    setTimeout(simulateLiveBets, 3000);
+  </script>
+</body>
+</html>
